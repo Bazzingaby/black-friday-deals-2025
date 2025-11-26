@@ -98,6 +98,41 @@
             .control-bar { flex-direction: column; text-align: center; }
             .tier-grid, .product-grid { grid-template-columns: 1fr; }
         }
+        /* Glass Breaking Animation */
+        .glass-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .glass-shard {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(200,220,255,0.6) 50%, rgba(150,200,255,0.3) 100%);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: shatter 0.8s ease-out forwards;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5), inset 0 0 5px rgba(255,255,255,0.3);
+        }
+        @keyframes shatter {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0);
+                opacity: 0;
+            }
+        }
+        .crack-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            height: 2px;
+            animation: crack 0.3s ease-out forwards;
+            box-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+        @keyframes crack {
+            0% { width: 0; opacity: 1; }
+            100% { width: var(--crack-length); opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -610,6 +645,63 @@
             console.log('Location changed to:', e.target.value);
             refreshDeals();
         });
+
+
+                // Glass Breaking Animation on Click
+        function createGlassBreak(x, y) {
+            const container = document.createElement('div');
+            container.className = 'glass-container';
+            container.style.left = (x - 100) + 'px';
+            container.style.top = (y - 100) + 'px';
+            document.body.appendChild(container);
+
+            // Create crack lines radiating from center
+            for (let i = 0; i < 8; i++) {
+                const crack = document.createElement('div');
+                crack.className = 'crack-line';
+                crack.style.left = '100px';
+                crack.style.top = '100px';
+                crack.style.transformOrigin = 'left center';
+                crack.style.transform = `rotate(${i * 45}deg)`;
+                crack.style.setProperty('--crack-length', (40 + Math.random() * 60) + 'px');
+                container.appendChild(crack);
+            }
+
+            // Create glass shards
+            const shardCount = 12 + Math.floor(Math.random() * 8);
+            for (let i = 0; i < shardCount; i++) {
+                const shard = document.createElement('div');
+                shard.className = 'glass-shard';
+                const size = 10 + Math.random() * 25;
+                shard.style.width = size + 'px';
+                shard.style.height = size + 'px';
+                shard.style.left = (100 - size/2) + 'px';
+                shard.style.top = (100 - size/2) + 'px';
+                
+                const angle = (i / shardCount) * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance + Math.random() * 50;
+                const rot = (Math.random() - 0.5) * 720;
+                
+                shard.style.setProperty('--tx', tx + 'px');
+                shard.style.setProperty('--ty', ty + 'px');
+                shard.style.setProperty('--rot', rot + 'deg');
+                shard.style.animationDelay = (Math.random() * 0.1) + 's';
+                
+                container.appendChild(shard);
+            }
+
+            // Remove container after animation
+            setTimeout(() => container.remove(), 1000);
+        }
+
+        // Add click listener to entire document
+        document.addEventListener('click', (e) => {
+            createGlassBreak(e.clientX, e.clientY);
+        });
+
+        
     </script>
 </body>
 </html>
