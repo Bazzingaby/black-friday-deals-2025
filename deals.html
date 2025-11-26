@@ -3,6 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- SEO Meta Tags -->
+    <meta name="description" content="Black Friday 2025 Deals: Best discounts on electronics, clothing, smartphones from Amazon, Flipkart, Best Buy, Croma. Compare prices across US, UK, India, Canada, Australia, Germany, France.">
+    <meta name="keywords" content="Black Friday 2025, Black Friday deals, electronics deals, iPhone deals, laptop deals, Black Friday India, Flipkart sale, Amazon sale, Croma sale, Vijay Sales, best Black Friday offers, smartphone deals">
+    <meta name="author" content="Black Friday Deals 2025">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Black Friday 2025 Deals - Best Electronics & Clothing Offers">
+    <meta property="og:description" content="Find the best Black Friday 2025 deals across Amazon, Flipkart, Best Buy, Walmart, Croma. Compare prices in US, UK, India & more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bazzingaby.github.io/black-friday-deals-2025/deals.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Black Friday 2025 Deals - Electronics & Clothing">
+    <meta name="twitter:description" content="Best Black Friday deals on electronics & clothing. Compare prices worldwide including India, US, UK.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bazzingaby.github.io/black-friday-deals-2025/deals.html">
+
+        <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Black Friday 2025 Deals - Electronics & Clothing",
+        "description": "Compare Black Friday 2025 deals across Amazon, Flipkart, Best Buy, Walmart, Croma. Best prices on electronics and clothing in US, UK, India.",
+        "url": "https://bazzingaby.github.io/black-friday-deals-2025/deals.html",
+        "dateModified": "2025-11-26",
+        "inLanguage": "en",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Black Friday Deals 2025",
+            "url": "https://bazzingaby.github.io/black-friday-deals-2025/"
+        },
+        "about": {
+            "@type": "Event",
+            "name": "Black Friday 2025",
+            "startDate": "2025-11-28",
+            "endDate": "2025-12-01",
+            "location": {
+                "@type": "Place",
+                "name": "Online - Multiple Retailers Worldwide"
+            }
+        },
+        "mentions": [
+            {"@type": "Organization", "name": "Amazon"},
+            {"@type": "Organization", "name": "Flipkart"},
+            {"@type": "Organization", "name": "Best Buy"},
+            {"@type": "Organization", "name": "Walmart"},
+            {"@type": "Organization", "name": "Croma"},
+            {"@type": "Organization", "name": "Apple"}
+        ]
+    }
+    </script>
+
+    
+
     <title>Black Friday 2025 Deals - Electronics & Clothing</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
@@ -192,11 +250,50 @@
         }
 
         
+                /* Price Trend Indicators */
+        .price-trend {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+        .trend-down {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+        .trend-up {
+            background: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+        }
+        .trend-stable {
+            background: rgba(136, 136, 136, 0.2);
+            color: #888;
+        }
+        
+        /* India Region Styles */
+        .india-platform {
+            background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        .platform-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+        .flipkart { background: #2874f0; }
+        .amazon-in { background: #ff9900; }
+        .croma { background: #00a650; }
+        .vijay-sales { background: #e31837; }
+
     </style>
 </head>
 <body>
     
     <canvas id="bg-canvas"></canvas>
+
     <div class="content">
         <div class="control-bar">
             <div class="location-selector">
@@ -213,6 +310,7 @@
             </div>
             <div class="refresh-info">
                 <span class="last-updated" id="last-updated">Last updated: Loading...</span>
+                
                 <span class="countdown" id="countdown">Next refresh: 15:00</span>
                 <button class="refresh-btn" onclick="refreshDeals()">🔄 Refresh Now</button>
             </div>
@@ -855,6 +953,120 @@
         document.addEventListener('click', (e) => {
             createGlassBreak(e.clientX, e.clientY);
         });
+
+                // Region-specific deals data with India support
+        const regionDeals = {
+            us: {
+                currency: '$',
+                currencySymbol: '$',
+                platforms: ['Amazon', 'Best Buy', 'Walmart', 'Target'],
+                topDeals: [
+                    { name: 'Sony WH-1000XM5', price: 248, originalPrice: 398, store: 'Amazon', url: 'https://www.amazon.com', trend: 'down' },
+                    { name: 'MacBook Air M3', price: 849, originalPrice: 1099, store: 'Apple', url: 'https://www.apple.com', trend: 'down' },
+                    { name: 'LG C4 65" OLED', price: 1299, originalPrice: 1999, store: 'Best Buy', url: 'https://www.bestbuy.com', trend: 'down' }
+                ]
+            },
+            in: {
+                currency: 'INR',
+                currencySymbol: '₹',
+                platforms: ['Flipkart', 'Amazon India', 'Croma', 'Vijay Sales', 'Reliance Digital'],
+                topDeals: [
+                    { name: 'iPhone 16', price: 56999, originalPrice: 69999, store: 'Flipkart', url: 'https://www.flipkart.com/apple-iphone-16', trend: 'down', savings: 13000 },
+                    { name: 'iPhone 16', price: 66900, originalPrice: 79900, store: 'Amazon India', url: 'https://www.amazon.in/dp/B0DGHPFT6P', trend: 'down', savings: 13000 },
+                    { name: 'Samsung Galaxy S24', price: 40999, originalPrice: 55999, store: 'Flipkart', url: 'https://www.flipkart.com/samsung-galaxy-s24', trend: 'down', savings: 15000 },
+                    { name: 'Galaxy S24 FE', price: 31999, originalPrice: 45999, store: 'Flipkart', url: 'https://www.flipkart.com', trend: 'down', savings: 14000 },
+                    { name: 'Sony WH-1000XM6', price: 39990, originalPrice: 44990, store: 'Croma', url: 'https://www.croma.com', trend: 'down', savings: 5000 },
+                    { name: 'Google Pixel 8a', price: 34999, originalPrice: 42999, store: 'Croma', url: 'https://www.croma.com', trend: 'down', savings: 8000 },
+                    { name: 'Apple iPad 11"', price: 33490, originalPrice: 34990, store: 'Croma', url: 'https://www.croma.com', trend: 'stable', savings: 1500 },
+                    { name: 'MacBook Air M3', price: 99900, originalPrice: 114900, store: 'Amazon India', url: 'https://www.amazon.in', trend: 'down', savings: 15000 },
+                    { name: 'PS5 Slim Bundle', price: 47990, originalPrice: 54990, store: 'Vijay Sales', url: 'https://www.vijaysales.com', trend: 'down', savings: 7000 },
+                    { name: 'OnePlus 12', price: 52999, originalPrice: 64999, store: 'Amazon India', url: 'https://www.amazon.in', trend: 'down', savings: 12000 }
+                ],
+                bankOffers: [
+                    'Bank of Baroda: 10% off on Credit Card EMI',
+                    'HSBC: 10% instant discount',
+                    'ICICI: No-cost EMI available',
+                    'SBI: 5% cashback on Credit Cards'
+                ],
+                saleDates: {
+                    flipkart: { start: 'Nov 23', end: 'Nov 28' },
+                    amazon: { start: 'Nov 23', end: 'Nov 30' },
+                    croma: { start: 'Nov 22', end: 'Nov 30' },
+                    vijaysales: { start: 'Nov 20', end: 'Nov 30' },
+                    myntra: { start: 'Nov 27', end: 'Dec 1' }
+                }
+            },
+            uk: {
+                currency: 'GBP',
+                currencySymbol: '\u00a3',
+                platforms: ['Amazon UK', 'Currys', 'John Lewis', 'Argos']
+            },
+            ca: {
+                currency: 'CAD',
+                currencySymbol: 'C$',
+                platforms: ['Amazon Canada', 'Best Buy Canada', 'Walmart Canada']
+            },
+            au: {
+                currency: 'AUD',
+                currencySymbol: 'A$',
+                platforms: ['Amazon Australia', 'JB Hi-Fi', 'Harvey Norman']
+            },
+            de: {
+                currency: 'EUR',
+                currencySymbol: '\u20ac',
+                platforms: ['Amazon.de', 'MediaMarkt', 'Saturn']
+            },
+            fr: {
+                currency: 'EUR',
+                currencySymbol: '\u20ac',
+                platforms: ['Amazon.fr', 'Fnac', 'Darty', 'Boulanger']
+            }
+        };
+
+        // Update location handler with region-specific content
+        function updateLocation() {
+            const select = document.getElementById('location-select');
+            const region = select.value;
+            const data = regionDeals[region];
+            
+            if (data) {
+                console.log('Region changed to:', region);
+                console.log('Currency:', data.currencySymbol);
+                console.log('Platforms:', data.platforms);
+                
+                // Store last check time
+                localStorage.setItem('lastPriceCheck', new Date().toISOString());
+                localStorage.setItem('selectedRegion', region);
+            }
+        }
+
+        // Check for price updates (runs every 15 mins via existing refresh)
+        function checkPriceUpdates() {
+            const lastCheck = localStorage.getItem('lastPriceCheck');
+            const now = new Date();
+            
+            if (lastCheck) {
+                const timeDiff = now - new Date(lastCheck);
+                const minutesDiff = Math.floor(timeDiff / 60000);
+                
+                if (minutesDiff >= 15) {
+                    console.log('Checking for price updates...');
+                    // In production, this would fetch from an API
+                    localStorage.setItem('lastPriceCheck', now.toISOString());
+                }
+            }
+        }
+
+        // Initialize region on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedRegion = localStorage.getItem('selectedRegion');
+            if (savedRegion) {
+                const select = document.getElementById('location-select');
+                if (select) select.value = savedRegion;
+            }
+            checkPriceUpdates();
+        });
+
 
         
     </script>
