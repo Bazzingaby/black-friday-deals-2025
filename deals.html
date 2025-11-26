@@ -889,6 +889,7 @@
                 
                 // Refresh deals data
                 refreshDeals();
+                            renderDealsForRegion(newLocation);
                 
                 // Start reconstruction animation
                 createParticleReconstruction();
@@ -1022,6 +1023,34 @@
                 platforms: ['Amazon.fr', 'Fnac', 'Darty', 'Boulanger']
             }
         };
+
+        // Render deals for specific region
+        function renderDealsForRegion(region) {
+            const data = regionDeals[region];
+            if (!data || !data.topDeals) return;
+            
+            const tierGrid = document.querySelector('.tier-grid');
+            if (!tierGrid) return;
+            
+            // Clear existing deals
+            tierGrid.innerHTML = '';
+            
+            // Render new deals
+            data.topDeals.forEach((deal, index) => {
+                const tier = index < 3 ? 's-tier' : 'a-tier';
+                const tierLabel = index < 3 ? 'S-TIER' : 'A-TIER';
+                const card = document.createElement('div');
+                card.className = `tier-card ${tier}`;
+                card.innerHTML = `
+                    <span class="tier-badge">${tierLabel}</span>
+                    <div class="tier-name">${deal.name}</div>
+                    <div class="tier-price">${data.currencySymbol}${deal.price.toLocaleString()}</div>
+                    <div class="tier-savings">Save ${data.currencySymbol}${(deal.originalPrice - deal.price).toLocaleString()}</div>
+                    <a href="${deal.url}" target="_blank" class="tier-link">View on ${deal.store} \u2192</a>
+                `;
+                tierGrid.appendChild(card);
+            });
+        }
 
         // Update location handler with region-specific content
         function updateLocation() {
