@@ -6,130 +6,614 @@
     <title>Black Friday 2025 Deals - Electronics & Clothing</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%); color: #e0e0e0; line-height: 1.7; padding: 20px; min-height: 100vh; }
-        .container { max-width: 900px; margin: 0 auto; }
-        header { text-align: center; padding: 40px 0; border-bottom: 2px solid #00d4aa; margin-bottom: 40px; }
-        h1 { color: #fff; font-size: 2.8rem; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0, 212, 170, 0.3); }
-        .subtitle { color: #00d4aa; font-size: 1.2rem; }
-        h2 { color: #00d4aa; font-size: 1.8rem; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 1px solid #333; }
-        h3 { color: #ffd700; font-size: 1.3rem; margin: 25px 0 15px; }
-        ul { list-style: none; margin-left: 0; }
-        li { padding: 12px 15px; margin: 8px 0; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid #00d4aa; transition: all 0.3s ease; }
-        li:hover { background: rgba(0, 212, 170, 0.1); transform: translateX(5px); }
-        .price { color: #00d4aa; font-weight: bold; }
-        .savings { color: #ffd700; font-size: 0.9rem; }
-        .tier { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #00d4aa; }
-        .tier.s-tier { border-left-color: #ffd700; background: linear-gradient(135deg, #1a1a1a, #2d2d0d); }
-        .tier h3 { margin-top: 0; }
-        .divider { border: none; border-top: 2px solid #333; margin: 50px 0; }
-        .tips { background: rgba(0, 212, 170, 0.1); padding: 25px; border-radius: 12px; margin: 30px 0; }
-        .tips h2 { margin-top: 0; border: none; }
-        .updated { color: #888; font-style: italic; text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #333; }
-        @media (max-width: 600px) { h1 { font-size: 2rem; } h2 { font-size: 1.4rem; } }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #001a33 0%, #003366 30%, #004d80 60%, #006699 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Underwater shimmer overlay */
+        .underwater-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(0,100,150,0.1) 0%, 
+                rgba(0,150,200,0.05) 50%, 
+                rgba(0,50,100,0.1) 100%);
+            pointer-events: none;
+            z-index: 1;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Floating bubbles */
+        .bubbles {
+            position: fixed;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            border-radius: 50%;
+            animation: rise linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+            50% { transform: translateX(20px); }
+            100% { transform: translateY(-110vh) translateX(-20px) scale(0.8); opacity: 0; }
+        }
+        
+        /* Wave effect at top */
+        .wave {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 150px;
+            z-index: 3;
+            overflow: hidden;
+        }
+        
+        .wave svg {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 100%;
+            animation: wave 15s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Main content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #00ffff, #00ff88, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0,255,255,0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0,255,255,0.4)); }
+            to { filter: drop-shadow(0 0 40px rgba(0,255,255,0.8)); }
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #00ffff;
+            margin: 50px 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h2::before {
+            content: '';
+            width: 40px; height: 3px;
+            background: linear-gradient(90deg, #00ffff, transparent);
+        }
+        
+        h3 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin: 30px 0 20px;
+        }
+        
+        /* Product grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .product-card:hover::before {
+            left: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,255,255,0.2);
+            border-color: rgba(0,255,255,0.5);
+        }
+        
+        .product-emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ffff;
+        }
+        
+        .product-savings {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .product-store {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Tier cards */
+        .tier-section {
+            margin: 40px 0;
+        }
+        
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .tier-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .tier-card.s-tier {
+            background: linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,165,0,0.1));
+            border-color: #ffd700;
+            box-shadow: 0 0 30px rgba(255,215,0,0.2);
+        }
+        
+        .tier-card.a-tier {
+            background: linear-gradient(135deg, rgba(192,192,192,0.2), rgba(192,192,192,0.05));
+            border-color: #c0c0c0;
+        }
+        
+        .tier-badge {
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .s-tier .tier-badge {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+        }
+        
+        .a-tier .tier-badge {
+            background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+            color: #000;
+        }
+        
+        /* Tips section */
+        .tips-section {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.05));
+            border: 1px solid rgba(0,255,136,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .tips-section h2 {
+            color: #00ff88;
+        }
+        
+        .tips-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tips-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .tips-section li::before {
+            content: '';
+            width: 8px; height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            header { padding: 40px 15px 30px; }
+        }
     </style>
 </head>
 <body>
+    <!-- Underwater Effects -->
+    <div class="underwater-overlay"></div>
+    <div class="bubbles" id="bubbles"></div>
+    <div class="wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,60 C300,120 600,0 900,60 C1050,90 1150,50 1200,60 L1200,0 L0,0 Z" fill="rgba(0,26,51,0.8)"/>
+        </svg>
+    </div>
+    
     <div class="container">
         <header>
             <h1>Black Friday 2025 Deals</h1>
-            <p class="subtitle">Electronics & Clothing - Curated Top Tier List</p>
+            <p class="subtitle">Electronics & Clothing - Best Prices of the Year</p>
         </header>
-
-        <h2>Top Electronics Deals</h2>
         
-        <h3>Best Overall Tech Deals</h3>
-        <ul>
-            <li>Apple AirPods Pro 3: <span class="price">$220</span> <span class="savings">(save $29)</span></li>
-            <li>Sony PlayStation 5 Slim Digital Edition: <span class="price">$399</span> <span class="savings">(save $100)</span></li>
-            <li>Apple MacBook Air M4 (13-inch): <span class="price">$749</span> <span class="savings">(save $250)</span></li>
-            <li>Amazon Fire HD 10 Tablet: <span class="price">$70</span> <span class="savings">(save $70)</span></li>
-            <li>Bose QuietComfort Headphones: <span class="price">$199</span> <span class="savings">(save $160)</span></li>
-            <li>Apple Watch SE 3: <span class="price">$199</span> <span class="savings">(save $50)</span></li>
-            <li>Google Pixel 10 (128GB): <span class="price">$599</span> <span class="savings">(save $200)</span></li>
-            <li>Meta Ray-Ban Glasses: <span class="price">$263</span> <span class="savings">(save up to $70)</span></li>
-            <li>Eufy 11S Max Robot Vacuum: <span class="price">$140</span> <span class="savings">(save $100)</span></li>
-            <li>Keurig K-Supreme: <span class="price">$99</span> <span class="savings">(save $91)</span></li>
-        </ul>
-
-        <h3>Laptops & PCs</h3>
-        <ul>
-            <li>Asus ROG Strix G16 Gaming Laptop (RTX 5070): <span class="price">$1,699</span> <span class="savings">(save $400)</span></li>
-            <li>Dell 15 (i7, 1TB, 16GB): <span class="price">$499</span> <span class="savings">(save $250)</span></li>
-            <li>Lenovo ThinkPad E14 (Ryzen 7): <span class="price">$859</span> <span class="savings">(save $380)</span></li>
-            <li>Alienware Gaming Laptops: <span class="price">Up to $999</span> <span class="savings">(save up to $350)</span></li>
-        </ul>
-
-        <h3>Desktops & Monitors</h3>
-        <ul>
-            <li>HP OmniDesk (Ultra 7, 2TB SSD): <span class="price">$679</span> <span class="savings">(save $540)</span></li>
-            <li>Alienware Aurora RTX Desktops: <span class="price">Starting $999</span> <span class="savings">(save up to $950)</span></li>
-            <li>Samsung Odyssey G95SD 49" QD-OLED: <span class="price">$1,180</span> <span class="savings">(save $719)</span></li>
-        </ul>
-
-        <hr class="divider">
-
-        <h2>Top Clothing Deals</h2>
+        <!-- Tier List -->
+        <section class="tier-section">
+            <h2>Deal Tier Rankings</h2>
+            <div class="tier-grid">
+                <div class="tier-card s-tier">
+                    <span class="tier-badge">S-TIER</span>
+                    <div class="product-emoji">🏆</div>
+                    <div class="product-name">Sony WH-1000XM5</div>
+                    <div class="product-price">$248 <span class="product-savings">Save $150</span></div>
+                    <div class="product-store">Best Buy</div>
+                </div>
+                <div class="tier-card s-tier">
+                    <span class="tier-badge">S-TIER</span>
+                    <div class="product-emoji">🏆</div>
+                    <div class="product-name">MacBook Air M3</div>
+                    <div class="product-price">$849 <span class="product-savings">Save $250</span></div>
+                    <div class="product-store">Amazon</div>
+                </div>
+                <div class="tier-card s-tier">
+                    <span class="tier-badge">S-TIER</span>
+                    <div class="product-emoji">🏆</div>
+                    <div class="product-name">LG C4 65" OLED TV</div>
+                    <div class="product-price">$1,299 <span class="product-savings">Save $500</span></div>
+                    <div class="product-store">Best Buy</div>
+                </div>
+                <div class="tier-card a-tier">
+                    <span class="tier-badge">A-TIER</span>
+                    <div class="product-emoji">⭐</div>
+                    <div class="product-name">iPad 10th Gen</div>
+                    <div class="product-price">$279 <span class="product-savings">Save $70</span></div>
+                    <div class="product-store">Amazon</div>
+                </div>
+                <div class="tier-card a-tier">
+                    <span class="tier-badge">A-TIER</span>
+                    <div class="product-emoji">⭐</div>
+                    <div class="product-name">Samsung Galaxy Watch 6</div>
+                    <div class="product-price">$189 <span class="product-savings">Save $110</span></div>
+                    <div class="product-store">Amazon</div>
+                </div>
+                <div class="tier-card a-tier">
+                    <span class="tier-badge">A-TIER</span>
+                    <div class="product-emoji">⭐</div>
+                    <div class="product-name">Nike Air Max 90</div>
+                    <div class="product-price">$78 <span class="product-savings">Save $52</span></div>
+                    <div class="product-store">Nike.com</div>
+                </div>
+            </div>
+        </section>
         
-        <h3>For Women</h3>
-        <ul>
-            <li>Wrangler + STAUD Reversible Jean Jacket: <span class="price">$159</span> <span class="savings">(save 59%)</span></li>
-            <li>SPANX Original EveryWear Flare Jeans: <span class="price">$59</span> <span class="savings">(save 60%)</span></li>
-            <li>Madewell "The Perfect Vintage" Wide-Leg Jean: <span class="price">$89</span> <span class="savings">(save 40%)</span></li>
-            <li>Macy's DKNY Puffer Coat: <span class="price">$144</span> <span class="savings">(save 60%)</span></li>
-            <li>Allbirds Women's Wool Runner Go: <span class="price">$55</span> <span class="savings">(save 50%)</span></li>
-        </ul>
-
-        <h3>For Men</h3>
-        <ul>
-            <li>Carhartt Rain Defender Sweatshirts: <span class="price">Under $44</span> <span class="savings">(save 39%)</span></li>
-            <li>Old Navy Plaid Flannel Shirt: <span class="price">$13.99</span> <span class="savings">(save 68%)</span></li>
-            <li>Michael Kors Hooded Parka: <span class="price">$130</span> <span class="savings">(save 62%)</span></li>
-            <li>Levi's 505 Regular Fit Jeans: <span class="price">$41.70</span> <span class="savings">(save 39%)</span></li>
-            <li>Everlane Heavyweight Overshirt: <span class="price">$69</span> <span class="savings">(save 50%)</span></li>
-        </ul>
-
-        <h3>Shoes, Accessories & Jewelry</h3>
-        <ul>
-            <li>Converse Chuck Taylor Street Boots: <span class="price">$37.50</span> <span class="savings">(save 50%)</span></li>
-            <li>Cole Haan Lug Oxfords: <span class="price">$80</span> <span class="savings">(save 55%)</span></li>
-            <li>Revo NASA-lens Sunglasses: <span class="price">$149</span> <span class="savings">(save 39%)</span></li>
-            <li>Kay Jewelers Heart Hoop Earrings (10K Gold): <span class="price">$47.99</span> <span class="savings">(save 46%)</span></li>
-        </ul>
-
-        <hr class="divider">
-
-        <h2>Top Tier List - Editor's Picks</h2>
-
-        <div class="tier s-tier">
-            <h3>S-Tier Electronics</h3>
-            <p>PlayStation 5 Slim $399, MacBook M4 $749 - Lowest prices in years @ Amazon, Walmart</p>
+        <!-- Electronics Deals -->
+        <h2>💻 Best Overall Tech Deals</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-emoji">🎧</div>
+                <div class="product-name">Sony WH-1000XM5 Headphones</div>
+                <div class="product-price">$248 <span class="product-savings">Save $150</span></div>
+                <div class="product-store">Best Buy, Amazon</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">📱</div>
+                <div class="product-name">AirPods Pro 2 (USB-C)</div>
+                <div class="product-price">$169 <span class="product-savings">Save $80</span></div>
+                <div class="product-store">Amazon, Target</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">📺</div>
+                <div class="product-name">LG C4 65" OLED TV</div>
+                <div class="product-price">$1,299 <span class="product-savings">Save $500</span></div>
+                <div class="product-store">Best Buy</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">⌚</div>
+                <div class="product-name">Apple Watch Series 10</div>
+                <div class="product-price">$329 <span class="product-savings">Save $70</span></div>
+                <div class="product-store">Amazon, Best Buy</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🎮</div>
+                <div class="product-name">PS5 Slim Bundle</div>
+                <div class="product-price">$424 <span class="product-savings">Save $75</span></div>
+                <div class="product-store">PlayStation Direct</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">📷</div>
+                <div class="product-name">GoPro Hero 13 Black</div>
+                <div class="product-price">$299 <span class="product-savings">Save $100</span></div>
+                <div class="product-store">Amazon</div>
+            </div>
         </div>
-
-        <div class="tier s-tier">
-            <h3>S-Tier Clothing</h3>
-            <p>SPANX Flare Jeans $59, Allbirds $55 - Massive % discount @ Spanx, Allbirds</p>
+        
+        <h3>💻 Laptops</h3>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-emoji">🍎</div>
+                <div class="product-name">MacBook Air M3 13"</div>
+                <div class="product-price">$849 <span class="product-savings">Save $250</span></div>
+                <div class="product-store">Amazon, B&H Photo</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">💻</div>
+                <div class="product-name">Dell XPS 15</div>
+                <div class="product-price">$999 <span class="product-savings">Save $400</span></div>
+                <div class="product-store">Dell.com</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🎮</div>
+                <div class="product-name">ASUS ROG Strix G16</div>
+                <div class="product-price">$1,099 <span class="product-savings">Save $300</span></div>
+                <div class="product-store">Best Buy</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🖥️</div>
+                <div class="product-name">HP Spectre x360</div>
+                <div class="product-price">$899 <span class="product-savings">Save $350</span></div>
+                <div class="product-store">HP.com</div>
+            </div>
         </div>
-
-        <div class="tier">
-            <h3>A-Tier Electronics</h3>
-            <p>AirPods Pro 3 $220, Smart TVs - Huge value, all models @ Amazon, Best Buy</p>
+        
+        <h3>🖥️ Desktops & Monitors</h3>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-emoji">🖥️</div>
+                <div class="product-name">iMac 24" M3</div>
+                <div class="product-price">$1,099 <span class="product-savings">Save $200</span></div>
+                <div class="product-store">Apple, Amazon</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">💻</div>
+                <div class="product-name">Samsung 32" 4K Monitor</div>
+                <div class="product-price">$249 <span class="product-savings">Save $150</span></div>
+                <div class="product-store">Amazon</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">⚡</div>
+                <div class="product-name">CyberPowerPC Gaming Desktop</div>
+                <div class="product-price">$799 <span class="product-savings">Save $300</span></div>
+                <div class="product-store">Best Buy</div>
+            </div>
         </div>
-
-        <div class="tier">
-            <h3>A-Tier Fashion</h3>
-            <p>Old Navy Plaid Shirt $14 - Classic savings @ Old Navy</p>
+        
+        <!-- Clothing Deals -->
+        <h2>👗 Clothing Deals</h2>
+        
+        <h3>👩 Women's Fashion</h3>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-emoji">🧥</div>
+                <div class="product-name">North Face Puffer Jacket</div>
+                <div class="product-price">$149 <span class="product-savings">Save $100</span></div>
+                <div class="product-store">North Face, REI</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">👚</div>
+                <div class="product-name">Lululemon Align Leggings</div>
+                <div class="product-price">$69 <span class="product-savings">Save $29</span></div>
+                <div class="product-store">Lululemon</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🧣</div>
+                <div class="product-name">Patagonia Fleece Jacket</div>
+                <div class="product-price">$99 <span class="product-savings">Save $50</span></div>
+                <div class="product-store">Patagonia, REI</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">👗</div>
+                <div class="product-name">Reformation Midi Dress</div>
+                <div class="product-price">$148 <span class="product-savings">Save $100</span></div>
+                <div class="product-store">Reformation</div>
+            </div>
         </div>
-
-        <div class="tips">
-            <h2>Shopping Tips</h2>
+        
+        <h3>👨 Men's Fashion</h3>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-emoji">🧥</div>
+                <div class="product-name">Carhartt WIP Jacket</div>
+                <div class="product-price">$119 <span class="product-savings">Save $80</span></div>
+                <div class="product-store">Carhartt WIP</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">👔</div>
+                <div class="product-name">Polo Ralph Lauren Sweater</div>
+                <div class="product-price">$79 <span class="product-savings">Save $69</span></div>
+                <div class="product-store">Ralph Lauren</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">👖</div>
+                <div class="product-name">Levi's 501 Original Jeans</div>
+                <div class="product-price">$39 <span class="product-savings">Save $30</span></div>
+                <div class="product-store">Levi's, Amazon</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🧥</div>
+                <div class="product-name">Columbia Fleece Pullover</div>
+                <div class="product-price">$29 <span class="product-savings">Save $31</span></div>
+                <div class="product-store">Columbia, Amazon</div>
+            </div>
+        </div>
+        
+        <h3>👟 Shoes & Accessories</h3>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-emoji">👟</div>
+                <div class="product-name">Nike Air Max 90</div>
+                <div class="product-price">$78 <span class="product-savings">Save $52</span></div>
+                <div class="product-store">Nike.com</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">👟</div>
+                <div class="product-name">Adidas Ultraboost</div>
+                <div class="product-price">$126 <span class="product-savings">Save $64</span></div>
+                <div class="product-store">Adidas.com</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🥾</div>
+                <div class="product-name">New Balance 990v6</div>
+                <div class="product-price">$156 <span class="product-savings">Save $44</span></div>
+                <div class="product-store">New Balance</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">👜</div>
+                <div class="product-name">Coach Outlet Bags</div>
+                <div class="product-price">70% OFF <span class="product-savings">Up to $250 off</span></div>
+                <div class="product-store">Coach Outlet</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">🧢</div>
+                <div class="product-name">Ray-Ban Wayfarer</div>
+                <div class="product-price">$99 <span class="product-savings">Save $54</span></div>
+                <div class="product-store">Ray-Ban, Sunglass Hut</div>
+            </div>
+            <div class="product-card">
+                <div class="product-emoji">⌚</div>
+                <div class="product-name">Samsung Galaxy Watch 6</div>
+                <div class="product-price">$189 <span class="product-savings">Save $110</span></div>
+                <div class="product-store">Amazon, Samsung</div>
+            </div>
+        </div>
+        
+        <!-- Shopping Tips -->
+        <section class="tips-section">
+            <h2>💡 Black Friday Shopping Tips</h2>
             <ul>
-                <li>Add items to cart and checkout quickly - many deals are limited in stock or time</li>
-                <li>For tech, prioritize "doorbuster" prices on Amazon, Best Buy, Walmart</li>
-                <li>For apparel, check brand sites first, then department stores for additional discount stacking</li>
+                <li>Compare prices across multiple retailers before purchasing</li>
+                <li>Sign up for email newsletters to get early access to deals</li>
+                <li>Use browser extensions like Honey or Rakuten for extra savings</li>
+                <li>Check return policies - some Black Friday deals are final sale</li>
+                <li>Add items to cart early and watch for price drops</li>
+                <li>Consider price matching at stores like Best Buy and Target</li>
+                <li>Don't forget Cyber Monday - some deals are even better!</li>
+                <li>Check store credit cards for additional percentage off</li>
             </ul>
-        </div>
-
-        <p class="updated">Last updated: November 26, 2025</p>
+        </section>
+        
+        <footer>
+            <p>Last updated: November 2025 | Prices and availability subject to change</p>
+            <p>Dive into savings this Black Friday! 🌊</p>
+        </footer>
     </div>
+    
+    <!-- Bubble Animation Script -->
+    <script>
+        function createBubbles() {
+            const container = document.getElementById('bubbles');
+            const bubbleCount = 30;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                const size = Math.random() * 30 + 10;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                bubble.style.animationDelay = (Math.random() * 5) + 's';
+                
+                container.appendChild(bubble);
+            }
+        }
+        
+        createBubbles();
+    </script>
 </body>
 </html>
